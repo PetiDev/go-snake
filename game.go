@@ -14,14 +14,15 @@ type Gamescreen struct {
 }
 
 func (g *Gamescreen) eatFood() {
-	g.snake.grow(g.food.color, snakeSize)
+	g.snake.grow(g.food.color, snakeSize*2)
 	score = score + 1
+	snakeSpeed = snakeSpeed + float32(score)*1.5
 	g.food.init()
 }
 
 func (g *Gamescreen) draw() {
 	drawCenteredText("Score: "+strconv.Itoa(score), screenWidt/2, 10, 20, rl.White)
-	if g.snake.snake[0].x == g.food.x && g.snake.snake[0].y == g.food.y {
+	if rl.CheckCollisionRecs(rl.NewRectangle(g.snake.getHeading().X, g.snake.getHeading().Y, 1, 1), rl.NewRectangle(float32(g.food.x), float32(g.food.y), float32(snakeSize), float32(snakeSize))) {
 		g.eatFood()
 	}
 
@@ -43,6 +44,5 @@ func (g *Gamescreen) init() {
 	g.food = new(Food)
 	g.food.init()
 
-	g.snake.snake = append(g.snake.snake, Snakenode{x: 100, y: 100, color: rl.Red})
 	g.snake.snake = append(g.snake.snake, Snakenode{x: 100, y: 100, color: rl.ColorFromHSV(rand.Float32()*360, 1, 1)})
 }

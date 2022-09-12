@@ -5,7 +5,8 @@ import (
 )
 
 type Snakenode struct {
-	x     int32
-	y     int32
-	color rl.Color
+	x       float32
+	y       float32
+	heading string
+	color   rl.Color
 }
