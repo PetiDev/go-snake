@@ -10,7 +10,7 @@ var (
 	gamescreen   = &Gamescreen{}
 	menuscreen   = &Menu{}
 	diescreen    = &DieScreen{}
-	snakeSpeed   = 1
+	snakeSpeed   = float32(50)
 	snakeSize    = 10
 
 	state     = 0
@@ -24,8 +24,8 @@ func drawCenteredText(text string, x int32, y int32, fontSize int32, color rl.Co
 }
 
 func main() {
+	rl.SetConfigFlags(rl.FlagVsyncHint)
 	rl.InitWindow(int32(screenWidt), int32(screenHeight), "Super Epic Snake (Ami még nem működik)")
-	rl.SetTargetFPS(60)
 
 	menuscreen.init()
 

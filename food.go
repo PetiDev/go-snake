@@ -18,7 +18,8 @@ func (f *Food) draw() {
 }
 
 func (f *Food) init() {
-	f.x = rand.Int31n((screenWidt)/int32(snakeSize)) * int32(snakeSize)
-	f.y = rand.Int31n((screenHeight)/int32(snakeSize)) * int32(snakeSize)
+	f.x = (rand.Int31n((screenWidt)/int32(snakeSize)-4) + 2) * int32(snakeSize)
+	f.y = (rand.Int31n((screenHeight)/int32(snakeSize)-4) + 2) * int32(snakeSize)
+
 	f.color = rl.ColorFromHSV(rand.Float32()*360, 1, 1)
 }
