@@ -1,5 +1,9 @@
 # go-snake
-I did this project to learn ray-lib, but I'm trying to get the most out of it.
+### I did this project to learn:
+- ray-lib
+- GoLang
+
+But I'm trying to get the most out of it.
 
 ---
 ## controlls
