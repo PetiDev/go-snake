@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
@@ -10,8 +12,11 @@ var (
 	gamescreen   = &Gamescreen{}
 	menuscreen   = &Menu{}
 	diescreen    = &DieScreen{}
+	authscreen   = &AuthScreen{}
 	snakeSpeed   = float32(50)
 	snakeSize    = 10
+	password     = ""
+	username     = ""
 
 	state     = 0
 	score     = 0
@@ -24,11 +29,19 @@ func drawCenteredText(text string, x int32, y int32, fontSize int32, color rl.Co
 }
 
 func main() {
+
 	rl.SetConfigFlags(rl.FlagVsyncHint)
 	rl.InitWindow(int32(screenWidt), int32(screenHeight), "Super Epic Snake (Ami még nem működik)")
 
 	menuscreen.init()
 
+	fmt.Println(`----------------
+	Never gonna give you up
+	Never gonna let you down
+	Never gonna run around and desert you
+	Never gonna make you cry
+	Never gonna say goodbye
+	Never gonna tell a lie and hurt you`)
 	for !rl.WindowShouldClose() {
 		rl.BeginDrawing()
 		rl.ClearBackground(rl.Black)
@@ -38,6 +51,8 @@ func main() {
 			gamescreen.draw()
 		case 2:
 			diescreen.draw()
+		case 3:
+			authscreen.draw()
 		default:
 			menuscreen.draw()
 		}
