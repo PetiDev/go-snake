@@ -18,7 +18,6 @@ func (s *Snake) die(reason string) {
 	diescreen.init()
 	state = 2
 	dieReason = reason
-	snakeSpeed = 50
 	if score > highScore {
 		highScore = score
 	}
