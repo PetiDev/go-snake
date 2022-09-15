@@ -5,6 +5,7 @@ import rl "github.com/gen2brain/raylib-go/raylib"
 type Snake struct {
 	snake     []Snakenode
 	direction string
+	turnDir   string
 }
 
 func (s *Snake) grow(color rl.Color, count int) {
@@ -17,6 +18,7 @@ func (s *Snake) die(reason string) {
 	diescreen.init()
 	state = 2
 	dieReason = reason
+	snakeSpeed = 50
 	if score > highScore {
 		highScore = score
 	}
@@ -41,10 +43,12 @@ func (s *Snake) turn(dir string) {
 		return
 	}
 
-	for int32(s.snake[0].x)%int32(snakeSize) != 0 || int32(s.snake[0].y)%int32(snakeSize) != 0 {
+	if int32(s.snake[0].x)%int32(snakeSize) != 0 || int32(s.snake[0].y)%int32(snakeSize) != 0 {
+		return
 	}
 	s.direction = dir
 	s.snake[0].heading = dir
+	s.turnDir = ""
 
 }
 func (s *Snake) move() {
@@ -91,21 +95,32 @@ func (s *Snake) move() {
 
 func (s *Snake) draw() {
 
-	if rl.IsKeyPressed(rl.KeyW) {
-		go s.turn("up")
+	if rl.IsKeyDown(rl.KeyW) {
+		s.turnDir = "up"
 	}
-	if rl.IsKeyPressed(rl.KeyS) {
-		go s.turn("down")
+	if rl.IsKeyDown(rl.KeyS) {
+		s.turnDir = "down"
 	}
-	if rl.IsKeyPressed(rl.KeyA) {
-		go s.turn("left")
+	if rl.IsKeyDown(rl.KeyA) {
+		s.turnDir = "left"
 	}
-	if rl.IsKeyPressed(rl.KeyD) {
-		go s.turn("right")
+	if rl.IsKeyDown(rl.KeyD) {
+		s.turnDir = "right"
 	}
+
+	if s.turnDir != "" {
+		s.turn(s.turnDir)
+	}
+
 	//TODO remove in production
 	if rl.IsKeyPressed(rl.KeySpace) {
-		s.grow(rl.DarkGreen, snakeSize*2)
+		s.grow(rl.DarkGreen, snakeSize*int(rl.GetFPS()/60))
+	}
+	if rl.IsKeyDown(rl.KeyUp) {
+		snakeSpeed = snakeSpeed + 1
+	}
+	if rl.IsKeyDown(rl.KeyDown) {
+		snakeSpeed = snakeSpeed - 1
 	}
 
 	s.move()

@@ -38,7 +38,9 @@ func (d *DieScreen) init() {
 		fontSize:       40,
 		grownFontSize:  50,
 		normalFontSize: 40,
-		color:          rl.Beige,
+		color:          rl.White,
+		defaultColor:   rl.White,
+		activeColor:    rl.Beige,
 		text:           "MENU",
 		callback: func() {
 			menuscreen.init()

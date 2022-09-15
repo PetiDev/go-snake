@@ -16,11 +16,13 @@ But I'm trying to get the most out of it.
 
 ---
 ## debug key's
-<u>I will remove these</u>
-|   Key | Action        |
-|-------|---------------|
-| space | grow snake    |
-|     r | relocate food |
+<u>I will remove these</u> <sub>or not IDK</sub>
+|       Key | Action        |
+|-----------|---------------|
+|     space | grow snake    |
+|         r | relocate food |
+|         e | faster        |
+|         q| slower        |
 ---
 ## A csomag tartalma:
 - 1db véletlen színű **kígyó**

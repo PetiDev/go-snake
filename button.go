@@ -7,6 +7,8 @@ type Button struct {
 	y              int32
 	fontSize       int32
 	color          rl.Color
+	activeColor    rl.Color
+	defaultColor   rl.Color
 	text           string
 	grownFontSize  int32
 	normalFontSize int32
@@ -22,9 +24,13 @@ func (b *Button) draw() {
 	if mouseY >= b.y-b.fontSize/2 && mouseY <= b.y+b.fontSize/2 && mouseX >= b.x-rl.MeasureText(b.text, b.fontSize)/2 && mouseX <= b.x+rl.MeasureText(b.text, b.fontSize)/2 {
 		b.fontSize = b.grownFontSize
 		if rl.IsMouseButtonDown(rl.MouseLeftButton) {
+
+			b.color = b.activeColor
+
 			b.callback()
 		}
 	} else {
 		b.fontSize = b.normalFontSize
+		b.color = b.defaultColor
 	}
 }

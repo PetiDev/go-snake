@@ -26,10 +26,12 @@ func (a *AuthScreen) draw() {
 
 func (a *AuthScreen) init() {
 	a.menu = &Button{
-		x:              60,
-		y:              screenHeight - 50,
+		x:              screenWidt / 2,
+		y:              screenHeight/2 + 40,
 		fontSize:       30,
 		color:          rl.White,
+		defaultColor:   rl.White,
+		activeColor:    rl.Beige,
 		text:           "MENU",
 		grownFontSize:  45,
 		normalFontSize: 30,
@@ -66,15 +68,17 @@ func (a *AuthScreen) init() {
 		isPass:       true,
 	}
 	a.submit = &Button{
-		x:              screenWidt/2 + 120,
-		y:              screenHeight - 50,
+		x:              screenWidt / 2,
+		y:              screenHeight/2 - 40,
 		fontSize:       30,
 		color:          rl.White,
+		defaultColor:   rl.White,
+		activeColor:    rl.Beige,
 		text:           "LOGIN",
 		grownFontSize:  45,
 		normalFontSize: 30,
 		callback: func() {
-			if score == 0 {
+			if score == 0 || string(a.name.biteSlice) == "" || string(a.pass.biteSlice) == "" {
 				return
 			}
 			username = string(a.name.biteSlice)
@@ -92,14 +96,19 @@ func (a *AuthScreen) init() {
 		},
 	}
 	a.register = &Button{
-		x:              screenWidt/2 - 80,
-		y:              screenHeight - 50,
+		x:              screenWidt / 2,
+		y:              screenHeight / 2,
 		fontSize:       30,
 		color:          rl.White,
+		defaultColor:   rl.White,
+		activeColor:    rl.Beige,
 		text:           "REGISTER",
 		grownFontSize:  45,
 		normalFontSize: 30,
 		callback: func() {
+			if string(a.name.biteSlice) == "" || string(a.pass.biteSlice) == "" {
+				return
+			}
 			username = string(a.name.biteSlice)
 			password = string(a.pass.biteSlice)
 			a := map[string]interface{}{

@@ -7,13 +7,13 @@ import (
 )
 
 var (
-	screenWidt   = int32(800)
-	screenHeight = int32(450)
+	screenWidt   = int32(500)
+	screenHeight = int32(500)
 	gamescreen   = &Gamescreen{}
 	menuscreen   = &Menu{}
 	diescreen    = &DieScreen{}
 	authscreen   = &AuthScreen{}
-	snakeSpeed   = float32(50)
+	snakeSpeed   = float32(70)
 	snakeSize    = 10
 	password     = ""
 	username     = ""

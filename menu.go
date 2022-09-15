@@ -42,30 +42,35 @@ func (m *Menu) getScoreboardData() {
 	res, err := http.Get("https://go-snake-backend.fly.dev/get")
 
 	if err != nil {
-		panic("JAJ ne nincs scoreboard")
+		fmt.Printf("Error fetching scoreboard: %s\n", err.Error())
+		return
 	}
 	defer res.Body.Close()
 
 	data, err := ioutil.ReadAll(res.Body)
 
 	if err != nil {
-		panic("JAJ ne nincs scoreboard")
+		fmt.Printf("Error fetching scoreboard: %s\n", err.Error())
+		return
 	}
 	scoreboard := make([]ScoreboardEntry, 0)
 	err = json.Unmarshal(data, &scoreboard)
 	if err != nil {
-		panic("JAJ ne nincs scoreboard")
+		fmt.Printf("Error fetching scoreboard: %s\n", err.Error())
+		return
 	}
 	m.scoreboard = scoreboard
 }
 
 func (m *Menu) init() {
-	m.getScoreboardData()
+	go m.getScoreboardData()
 	m.play = &Button{
 		x:              screenWidt / 2,
 		y:              100,
 		text:           "PLAY",
 		color:          rl.White,
+		defaultColor:   rl.White,
+		activeColor:    rl.Beige,
 		fontSize:       30,
 		grownFontSize:  40,
 		normalFontSize: 30,
@@ -80,6 +85,8 @@ func (m *Menu) init() {
 		y:              150,
 		text:           "AUTH",
 		color:          rl.White,
+		defaultColor:   rl.White,
+		activeColor:    rl.Beige,
 		fontSize:       30,
 		grownFontSize:  40,
 		normalFontSize: 30,
