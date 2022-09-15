@@ -44,7 +44,7 @@ func (a *AuthScreen) init() {
 	a.name = &Input{
 		x:            screenWidt / 2,
 		y:            20,
-		width:        screenWidt / 2,
+		width:        screenWidt/2 + 80,
 		height:       60,
 		color:        rl.White,
 		defaultColor: rl.White,
@@ -57,7 +57,7 @@ func (a *AuthScreen) init() {
 	a.pass = &Input{
 		x:            screenWidt / 2,
 		y:            100,
-		width:        screenWidt / 2,
+		width:        screenWidt/2 + 80,
 		height:       60,
 		color:        rl.White,
 		defaultColor: rl.White,
