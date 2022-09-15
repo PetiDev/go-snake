@@ -115,10 +115,10 @@ func (s *Snake) draw() {
 	if rl.IsKeyPressed(rl.KeySpace) {
 		s.grow(rl.DarkGreen, snakeSize*int(rl.GetFPS()/60))
 	}
-	if rl.IsKeyDown(rl.KeyUp) {
+	if rl.IsKeyDown(rl.KeyE) {
 		snakeSpeed = snakeSpeed + 1
 	}
-	if rl.IsKeyDown(rl.KeyDown) {
+	if rl.IsKeyDown(rl.KeyQ) {
 		snakeSpeed = snakeSpeed - 1
 	}
 
