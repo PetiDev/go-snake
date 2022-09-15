@@ -18,6 +18,7 @@ func (s *Snake) die(reason string) {
 	diescreen.init()
 	state = 2
 	dieReason = reason
+	snakeSpeed = 70
 	if score > highScore {
 		highScore = score
 	}
@@ -87,7 +88,7 @@ func (s *Snake) move() {
 		if s.snake[0].x-snakeSpeed*rl.GetFrameTime() < float32(screenWidt) {
 			s.snake[0].x = s.snake[0].x + snakeSpeed*rl.GetFrameTime()
 		} else {
-			s.die("Nem vagyok túl kreatít, de meghaltál")
+			s.die("Túl messzire mentél")
 		}
 	}
 }
