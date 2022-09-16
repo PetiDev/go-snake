@@ -7,12 +7,12 @@ But I'm trying to get the most out of it.
 
 ---
 ## controlls
-| Key | Action         |
-|-----|----------------|
-|   W | turn upwards   |
-|   S | turn downwards |
-|   A | turn left      |
-|   D | turn right     |
+|                 Key | Action         |
+|---------------------|----------------|
+|   W  or     UpArrow | turn upwards   |
+|   S  or   DownArrow | turn downwards |
+|   A  or   LeftArrow | turn left      |
+|   D  or  RightArrow | turn right     |
 
 ---
 ## debug key's
