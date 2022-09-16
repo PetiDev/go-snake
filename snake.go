@@ -95,16 +95,16 @@ func (s *Snake) move() {
 
 func (s *Snake) draw() {
 
-	if rl.IsKeyDown(rl.KeyW) {
+	if rl.IsKeyDown(rl.KeyW) || rl.IsKeyDown(rl.KeyUp) {
 		s.turnDir = "up"
 	}
-	if rl.IsKeyDown(rl.KeyS) {
+	if rl.IsKeyDown(rl.KeyS) || rl.IsKeyDown(rl.KeyDown) {
 		s.turnDir = "down"
 	}
-	if rl.IsKeyDown(rl.KeyA) {
+	if rl.IsKeyDown(rl.KeyA) || rl.IsKeyDown(rl.KeyLeft) {
 		s.turnDir = "left"
 	}
-	if rl.IsKeyDown(rl.KeyD) {
+	if rl.IsKeyDown(rl.KeyD) || rl.IsKeyDown(rl.KeyRight) {
 		s.turnDir = "right"
 	}
 
