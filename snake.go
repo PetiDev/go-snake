@@ -9,6 +9,12 @@ type Snake struct {
 }
 
 func (s *Snake) grow(color rl.Color, count int) {
+	if rl.GetFPS() < 60 {
+		count = count * snakeSize
+	} else {
+		count = count * snakeSize * int(rl.GetFPS()/60)
+	}
+
 	for i := 0; i < count; i++ {
 		s.snake = append(s.snake, Snakenode{x: s.snake[len(s.snake)-1].x, y: s.snake[len(s.snake)-1].y, color: color, heading: s.snake[len(s.snake)-1].heading})
 	}
@@ -114,7 +120,7 @@ func (s *Snake) draw() {
 
 	//TODO remove in production
 	if rl.IsKeyPressed(rl.KeySpace) {
-		s.grow(rl.DarkGreen, snakeSize*int(rl.GetFPS()/60))
+		s.grow(rl.DarkGreen, 1)
 	}
 	if rl.IsKeyDown(rl.KeyE) {
 		snakeSpeed = snakeSpeed + 1

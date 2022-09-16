@@ -14,7 +14,7 @@ type Gamescreen struct {
 }
 
 func (g *Gamescreen) eatFood() {
-	g.snake.grow(g.food.color, snakeSize*(int(rl.GetFPS()/60)))
+	g.snake.grow(g.food.color, 1)
 	score = score + 1
 	g.food.init()
 }
