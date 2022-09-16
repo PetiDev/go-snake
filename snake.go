@@ -85,7 +85,7 @@ func (s *Snake) move() {
 			s.die("Nem arra van a pálya")
 		}
 	case "right":
-		if s.snake[0].x-snakeSpeed*rl.GetFrameTime() < float32(screenWidt) {
+		if s.snake[0].x-snakeSpeed*rl.GetFrameTime() < float32(screenWidt)-float32(snakeSize) {
 			s.snake[0].x = s.snake[0].x + snakeSpeed*rl.GetFrameTime()
 		} else {
 			s.die("Túl messzire mentél")
@@ -119,7 +119,7 @@ func (s *Snake) draw() {
 	if rl.IsKeyDown(rl.KeyE) {
 		snakeSpeed = snakeSpeed + 1
 	}
-	if rl.IsKeyDown(rl.KeyQ) {
+	if rl.IsKeyDown(rl.KeyQ) && snakeSpeed > 1 {
 		snakeSpeed = snakeSpeed - 1
 	}
 
