@@ -28,6 +28,9 @@ func (m *Menu) draw() {
 	m.auth.draw()
 	drawCenteredText("Score: "+strconv.Itoa(score), int32(screenWidt)/2, 10, 20, rl.White)
 	drawCenteredText("Highscore: "+strconv.Itoa(highScore), screenWidt/2, 40, 30, rl.White)
+	if gameVersion != currentVersion {
+		drawCenteredText("Outdated version", screenWidt/2, screenHeight-20, 30, rl.Blue)
+	}
 
 	for k, v := range m.scoreboard {
 		if k > 10 {

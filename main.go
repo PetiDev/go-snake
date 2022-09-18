@@ -2,25 +2,28 @@ package main
 
 import (
 	"fmt"
+	"io/ioutil"
+	"net/http"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
 const (
-	gameVersion = "v.2.2.1"
+	gameVersion = "v2.2.2"
 )
 
 var (
-	screenWidt   = int32(500)
-	screenHeight = int32(500)
-	gamescreen   = &Gamescreen{}
-	menuscreen   = &Menu{}
-	diescreen    = &DieScreen{}
-	authscreen   = &AuthScreen{}
-	snakeSpeed   = float32(70)
-	snakeSize    = 10
-	password     = ""
-	username     = ""
+	currentVersion = ""
+	screenWidt     = int32(500)
+	screenHeight   = int32(500)
+	gamescreen     = &Gamescreen{}
+	menuscreen     = &Menu{}
+	diescreen      = &DieScreen{}
+	authscreen     = &AuthScreen{}
+	snakeSpeed     = float32(70)
+	snakeSize      = 10
+	password       = ""
+	username       = ""
 
 	state     = 0
 	score     = 0
@@ -32,11 +35,28 @@ func drawCenteredText(text string, x int32, y int32, fontSize int32, color rl.Co
 	rl.DrawText(text, x-rl.MeasureText(text, fontSize)/2, y-fontSize/2, fontSize, color)
 }
 
+func getCurrentVersion() string {
+	res, err := http.Get("https://go-snake-backend.fly.dev/get/version/")
+
+	if err != nil {
+		fmt.Println("Error getting current version")
+	}
+
+	data, err := ioutil.ReadAll(res.Body)
+
+	if err != nil {
+		fmt.Println("Error getting current version")
+	}
+
+	return string(data)
+}
+
 func main() {
 
 	rl.SetConfigFlags(rl.FlagVsyncHint)
 	rl.InitWindow(int32(screenWidt), int32(screenHeight), "Super Epic Snake (Ami még nem működik)")
 
+	currentVersion = getCurrentVersion()
 	menuscreen.init()
 
 	fmt.Println(`----------------
