@@ -92,7 +92,7 @@ func (a *AuthScreen) init() {
 			if err != nil {
 				panic("Something went wrong")
 			}
-			http.Post("https://go-snake-backend.fly.dev/write", "application/json", strings.NewReader(string(data)))
+			http.Post("https://go-snake-backend.fly.dev/write?version="+gameVersion, "application/json", strings.NewReader(string(data)))
 		},
 	}
 	a.register = &Button{
@@ -120,7 +120,7 @@ func (a *AuthScreen) init() {
 			if err != nil {
 				panic("Something went wrong")
 			}
-			http.Post("https://go-snake-backend.fly.dev/register", "application/json", strings.NewReader(string(data)))
+			http.Post("https://go-snake-backend.fly.dev/register?version="+gameVersion, "application/json", strings.NewReader(string(data)))
 		},
 	}
 }

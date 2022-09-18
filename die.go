@@ -28,7 +28,7 @@ func (d *DieScreen) init() {
 			if err != nil {
 				panic("Something went wrong")
 			}
-			go http.Post("https://go-snake-backend.fly.dev/write", "application/json", strings.NewReader(string(data)))
+			go http.Post("https://go-snake-backend.fly.dev/write?version="+gameVersion, "application/json", strings.NewReader(string(data)))
 		}
 	}
 

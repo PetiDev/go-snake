@@ -28,10 +28,6 @@ func (g *Gamescreen) draw() {
 	g.food.draw()
 	g.snake.draw()
 
-	//TODO remove in production
-	if rl.IsKeyPressed(rl.KeyR) {
-		g.food.init()
-	}
 }
 
 func (g *Gamescreen) init() {

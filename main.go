@@ -6,6 +6,10 @@ import (
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
+const (
+	gameVersion = "v.2.2.1"
+)
+
 var (
 	screenWidt   = int32(500)
 	screenHeight = int32(500)

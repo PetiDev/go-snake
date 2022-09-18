@@ -20,7 +20,6 @@ But I'm trying to get the most out of it.
 |   Key | Action        |
 |-------|---------------|
 | space | grow snake    |
-|     r | relocate food |
 |     e | faster        |
 |     q | slower        |
 ---
