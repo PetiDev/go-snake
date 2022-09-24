@@ -4,12 +4,13 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"time"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
 
 const (
-	gameVersion = "v2.2.2"
+	gameVersion = "v2.3.1"
 )
 
 var (
@@ -24,11 +25,13 @@ var (
 	snakeSize      = 10
 	password       = ""
 	username       = ""
-
-	state     = 0
-	score     = 0
-	highScore = 0
-	dieReason = ""
+	gameOpened     = int64(0)
+	lastGametime   = int64(0)
+	deaths         = 0
+	state          = 0
+	score          = 0
+	highScore      = 0
+	dieReason      = ""
 )
 
 func drawCenteredText(text string, x int32, y int32, fontSize int32, color rl.Color) {
@@ -52,6 +55,8 @@ func getCurrentVersion() string {
 }
 
 func main() {
+
+	gameOpened = time.Now().Unix()
 
 	rl.SetConfigFlags(rl.FlagVsyncHint)
 	rl.InitWindow(int32(screenWidt), int32(screenHeight), "Super Epic Snake (Ami még nem működik)")

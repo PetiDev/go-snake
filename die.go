@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 	"strings"
+	"time"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
@@ -17,12 +18,18 @@ func (d *DieScreen) draw() {
 	d.menu.draw()
 }
 func (d *DieScreen) init() {
+	lastGametime = time.Now().Unix() - lastGametime
+	deaths++
+
 	if score != 0 {
 		if username != "" || password != "" {
 			a := map[string]interface{}{
-				"name":   username,
-				"pass":   password,
-				"points": score,
+				"name":         username,
+				"pass":         password,
+				"points":       score,
+				"gameOpened":   gameOpened,
+				"lastGametime": lastGametime,
+				"deaths":       deaths,
 			}
 			data, err := json.Marshal(a)
 			if err != nil {

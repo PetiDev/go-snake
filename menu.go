@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"strconv"
+	"time"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
 )
@@ -31,7 +32,7 @@ func (m *Menu) draw() {
 	if gameVersion != currentVersion {
 		drawCenteredText("Outdated version", screenWidt/2, screenHeight-20, 30, rl.Blue)
 	}
-	rl.DrawText(currentVersion, 0, screenHeight-20, 20, rl.White)
+	rl.DrawText(currentVersion, 4, screenHeight-24, 20, rl.White)
 
 	for k, v := range m.scoreboard {
 		if k > 10 {
@@ -39,6 +40,11 @@ func (m *Menu) draw() {
 		}
 		drawCenteredText(fmt.Sprintf("%s <---------> %d", v.Name, v.Points), screenWidt/2, int32(180+k*30), 26, rl.Red)
 	}
+
+	rl.DrawText("Session:", 20, screenHeight-120, 20, rl.White)
+	rl.DrawText(fmt.Sprintf("Deaths: %d", deaths), 30, screenHeight-100, 20, rl.White)
+	rl.DrawText(fmt.Sprintf("lastGametime: %dmin %dsec", time.Unix(lastGametime, 0).Minute(), time.Unix(lastGametime, 0).Second()), 30, screenHeight-80, 20, rl.White)
+	rl.DrawText(fmt.Sprintf("Opened: %s", time.Unix(gameOpened, 0).Format("2006-01-02, 15:04:05")), 30, screenHeight-60, 20, rl.White)
 
 }
 

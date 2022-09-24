@@ -31,6 +31,7 @@ func (g *Gamescreen) draw() {
 }
 
 func (g *Gamescreen) init() {
+	lastGametime = time.Now().Unix()
 	rand.Seed(time.Now().Unix())
 
 	g.snake = &Snake{
