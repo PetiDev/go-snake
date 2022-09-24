@@ -31,6 +31,7 @@ func (m *Menu) draw() {
 	if gameVersion != currentVersion {
 		drawCenteredText("Outdated version", screenWidt/2, screenHeight-20, 30, rl.Blue)
 	}
+	rl.DrawText(currentVersion, 0, screenHeight-20, 20, rl.White)
 
 	for k, v := range m.scoreboard {
 		if k > 10 {
